@@ -19,8 +19,7 @@ function l = Detect_number_of_integrals(x)
   endfor
   l(end+1) = contador;
 endfunction
-a=1; %Semianchura del pulso rectangular a<pi
-k=10; %Número de términos
+k=10; 
 y=[-1 1];
 T0 = length(y);
 l = Detect_number_of_integrals(y);
