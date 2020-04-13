@@ -36,7 +36,7 @@ for i=1:length(l)
   r = w;
 endfor
 f = [" ";" ";" ";" "];
-f = cellstr(f)
+f = cellstr(f);
 an = 0;
 bn = 0;
 sum=0;
@@ -77,6 +77,7 @@ function plot_k(i,v,y,T0,k,a0)
   fplot(inline(strcat(v,"+",num2str(a0/2)),"x"))
   stem(u,y_periodic(1:length(u)), "linewidth",3)
   legend("hide");
+  grid;
   hold off;
 endfunction
 for i=1:length(k)
