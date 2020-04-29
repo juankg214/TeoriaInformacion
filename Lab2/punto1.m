@@ -63,16 +63,7 @@ stem(d_Ts, q,'b');
 grid; 
 title(['Señal Cuantizada en ' num2str(L) ' niveles']);
 hold off;
-#------------------- demodulacion -------------------------------
-dem = ones(1,length(d_Ts));
-for i = 0:length(ms)-2
-  dem(i+1) = (ms(i+1)-ms(i+2)/2);            %Se escogen los puntos de la señal original en cada Tiempo muestral
-endfor
-subplot(4,1,4); 
-stem(d_Ts,dem,'b');
-grid; 
-title('Señal original m(t)');
-xlabel("t"),ylabel("m(t)"); 
+#------------------- DEMODULACION -------------------------------
 
 
 #---------- CODIFICACÓN ----------
