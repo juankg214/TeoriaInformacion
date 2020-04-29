@@ -38,7 +38,8 @@ grid;
 title('Señal Muestreada ms(t)');
 xlabel("t"),ylabel("m(t)");
 hold off;
-
+                            
+  
 #---------- Cuantificación ----------
 
 mp = max(m);           % Amplitud maxima. En nuestro ejemplo 2.7358
@@ -63,7 +64,23 @@ stem(d_Ts, q,'b');
 grid; 
 title(['Señal Cuantizada en ' num2str(L) ' niveles']);
 hold off;
-#------------------- DEMODULACION -------------------------------
+#---------- Demodulation -------
+f = "";
+for i=1:length(ms)-1
+  if(i!=length(ms)-1)
+    f = strcat(f,num2str(ms(i)),".*sin(t.-",num2str(Ts*i),")./(t.-",num2str(Ts*i),").+");
+   else
+    f = strcat(f,num2str(ms(i)),".*sin(t.-",num2str(Ts*i),")./(t.-",num2str(Ts*i),")");
+   endif
+endfor
+subplot(4,1,4); 
+f = inline(f,"t");
+f(1)
+fplot(f,'b');
+legend("off");
+grid; 
+title('Señal original m(t)');
+xlabel("t"),ylabel("m(t)");   
 
 
 #---------- CODIFICACÓN ----------
@@ -94,6 +111,7 @@ for i = 0:length(bits)-1
     endfor
   endif
 endfor
+unz
 subplot(3,2,1); plot(tau,unz); title(['UNIPOLAR NRZ PARA ' cod]); axis([0 length(bits) -1.1 1.1]); grid minor;
 
 #Unipolar RZ
