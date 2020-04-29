@@ -67,17 +67,25 @@ hold off;
 #---------- Demodulation -------
 f = "";
 aux = num2str(2*pi*fm);
+##for i=1:length(ms)-1
+##  if(i!=length(ms)-1)
+##    f = strcat(f,num2str(ms(i)),".*sin(",aux,"*(t.-",num2str(Ts*i),"))./(",aux,"*(t.-",num2str(Ts*i),")).+");
+##   else
+##    f = strcat(f,num2str(ms(i)),".*sin(",aux,"*(t.-",num2str(Ts*i),"))./(",aux,"*(t.-",num2str(Ts*i),"))");
+##   endif
+##endfor
+
 for i=1:length(ms)-1
   if(i!=length(ms)-1)
-    f = strcat(f,num2str(ms(i)),".*sin(",aux,"*(t.-",num2str(Ts*i),"))./(",aux,"*(t.-",num2str(Ts*i),")).+");
+    f = strcat(f,num2str(ms(i)),".*sinc((t.-",num2str(i*Ts),")./",num2str(Ts),").+");
    else
-    f = strcat(f,num2str(ms(i)),".*sin(",aux,"*(t.-",num2str(Ts*i),"))./(",aux,"*(t.-",num2str(Ts*i),"))");
+    f = strcat(f,num2str(ms(i)),".*sinc((t.-",num2str(i*Ts),")./",num2str(Ts),")");
    endif
 endfor
 subplot(4,1,4); 
 f = inline(f,"t");
 f(1)
-fplot(f,'b');
+fplot(f,[0 , 7],'b');
 legend("off");
 grid; 
 title('Señal original m(t)');
