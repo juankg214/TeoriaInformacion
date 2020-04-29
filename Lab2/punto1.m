@@ -66,11 +66,12 @@ title(['Señal Cuantizada en ' num2str(L) ' niveles']);
 hold off;
 #---------- Demodulation -------
 f = "";
+aux = num2str(2*pi*fm);
 for i=1:length(ms)-1
   if(i!=length(ms)-1)
-    f = strcat(f,num2str(ms(i)),".*sin(t.-",num2str(Ts*i),")./(t.-",num2str(Ts*i),").+");
+    f = strcat(f,num2str(ms(i)),".*sin(",aux,"*(t.-",num2str(Ts*i),"))./(",aux,"*(t.-",num2str(Ts*i),")).+");
    else
-    f = strcat(f,num2str(ms(i)),".*sin(t.-",num2str(Ts*i),")./(t.-",num2str(Ts*i),")");
+    f = strcat(f,num2str(ms(i)),".*sin(",aux,"*(t.-",num2str(Ts*i),"))./(",aux,"*(t.-",num2str(Ts*i),"))");
    endif
 endfor
 subplot(4,1,4); 
