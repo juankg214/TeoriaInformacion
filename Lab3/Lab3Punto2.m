@@ -3,6 +3,7 @@ P_x = [0.08 0.25 0.20 0.12 0.3 0.05];
 P_x = sort(P_x,'descend')
 Res = Huffman(P_x)
 
+#pag 12, cap 10
 
 #H(x)
 H_x = 0;
